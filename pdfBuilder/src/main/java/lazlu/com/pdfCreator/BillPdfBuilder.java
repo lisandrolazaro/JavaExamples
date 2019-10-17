@@ -100,7 +100,8 @@ public class BillPdfBuilder {
         currentFont = PDType1Font.COURIER_BOLD;
         currentFontSize = 12;
         contentStream.setFont(currentFont, currentFontSize);
-        float offsetX2 = getCenteredTextXPos(firstPage, owner.getAddressLine1(), currentFont, currentFontSize);
+        //float offsetX2 = getCenteredTextXPos(firstPage, owner.getAddressLine1(), currentFont, currentFontSize);
+        float offsetX2 = 20;
         contentStream.newLineAtOffset(-offsetXName + offsetX2, -5f);
         contentStream.newLine();
         contentStream.showText(owner.getAddressLine1());
@@ -115,7 +116,8 @@ public class BillPdfBuilder {
         currentFontSize = 14;
         contentStream.setFont(currentFont, currentFontSize);
         contentStream.beginText();
-        float offsetX = getCenteredTextXPos(firstPage, owner.getCompleteName(), currentFont, currentFontSize);
+//        float offsetX = getCenteredTextXPos(firstPage, owner.getCompleteName(), currentFont, currentFontSize);
+        float offsetX = 20f;
         contentStream.newLineAtOffset(offsetX, 750f);
         contentStream.showText(owner.getCompleteName());
         return offsetX;
@@ -135,7 +137,7 @@ public class BillPdfBuilder {
 
         contentStream.beginText();
 
-        contentStream.newLineAtOffset(80f, 710f);
+        contentStream.newLineAtOffset(getCenterPosition(firstPage), 710f);
         contentStream.setLeading(10);
         contentStream.setFont(BOLD, NORMAL_FONT_SIZE);
         contentStream.showText("Customer name: ");
@@ -189,10 +191,14 @@ public class BillPdfBuilder {
     private float getCenteredTextXPos(PDPage page, String text, PDFont font, int fontSize)
             throws IOException {
         float textWidth = getStringWidth(text, font, fontSize);
-        PDRectangle pageSize = page.getMediaBox();
-        float pageCenterX = pageSize.getWidth() / 2F;
+        float pageCenterX = getCenterPosition(page);
         float textX = pageCenterX - textWidth/2F;
         return textX;
+    }
+
+    private float getCenterPosition(PDPage page) {
+        PDRectangle pageSize = page.getMediaBox();
+        return pageSize.getWidth() / 2F;
     }
 
     private String buildItemHeader() {
