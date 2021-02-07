@@ -6,6 +6,8 @@ public class Owner {
     private String nif;
     private String addressLine1;
     private String addressLine2;
+    private String bankAccountName;
+    private String bankAccountNumber;
 
     public String getCompleteName() {
         return completeName;
@@ -37,5 +39,21 @@ public class Owner {
 
     public void setAddressLine2(String addressLine2) {
         this.addressLine2 = addressLine2;
+    }
+
+    public String getBankAccountName() {
+        return bankAccountName;
+    }
+
+    public void setBankAccountName(String bankAccountName) {
+        this.bankAccountName = bankAccountName;
+    }
+
+    public String getBankAccountNumber() {
+        return bankAccountNumber;
+    }
+
+    public void setBankAccountNumber(String bankAccountNumber) {
+        this.bankAccountNumber = bankAccountNumber;
     }
 }

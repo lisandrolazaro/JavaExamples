@@ -1,15 +1,32 @@
 package lazlu.com.pdfCreator.model;
 
 public class BillItem {
-    private double price;
-    private double quantity;
+
+    private Double price;
+    private int quantity;
     private String name;
 
-    public double getPrice() {
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Double getTotal() {
+        return price * quantity;
+    }
+
+    public Double getPrice() {
         return price;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 

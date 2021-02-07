@@ -5,16 +5,17 @@ import java.util.List;
 
 public class Bill {
     private List<BillItem> billingItems;
-    private double total;
 
-    public Iterable<? extends BillItem> getCharges() {
+    public List<BillItem> getBillingItems() {
         if(billingItems == null) {
             billingItems = new ArrayList<>();
         }
         return billingItems;
     }
 
-    public double getTotal() {
-        return total;
+    public Double getTotal() {
+       return billingItems.stream()
+                .mapToDouble(BillItem::getTotal)
+                .sum();
     }
 }
